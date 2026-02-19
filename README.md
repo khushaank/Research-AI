@@ -5,21 +5,28 @@ A beautiful, light-themed AI research archive.
 ## How to Add Research
 
 1.  **Place your files** (PDFs, Images) into the `assets/research/` folder.
-2.  **Run the update script**:
+2.  **Deployment**: Push your changes to GitHub.
+3.  **Automatic Indexing**: The GitHub Action will automatically run `npm run index` and update the manifest.
+
+## Local Development
+
+1.  **Install**:
     ```bash
-    python scripts/generate_index.py
+    npm install
     ```
-    This will scan the folder and update the website content.
-3.  **Deploy**: Push your changes to GitHub.
+2.  **Update Index**:
+    ```bash
+    npm run index
+    ```
+3.  **Run Server**:
+    ```bash
+    npm start
+    ```
+    Open `http://localhost:8000`
 
 ## Features
 
-- **Auto-Indexing**: The Python script automatically finds your files.
-- **Light Mode AI Theme**: Designed for clarity and a premium feel.
-- **PDF & Image Support**: View documents directly in the browser.
-- **Responsive**: Works on desktop and mobile.
-
-## Customization
-
-- Edit `css/style.css` to change colors or fonts.
-- Edit `index.html` to change the title or description.
+- **Node.js Backend**: Uses Express to serve files.
+- **Auto-Indexing**: JavaScript script automatically finds your files.
+- **Premium Dashboard**: Sidebar navigation with real-time search.
+- **GitHub Actions**: Fully automated deployment and indexing.

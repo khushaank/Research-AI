@@ -1,0 +1,27 @@
+{
+  "name": "research-ai",
+  "version": "1.0.0",
+  "description": "A beautiful, light-themed AI research archive.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "index": "node scripts/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khushaank/Research-AI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/khushaank/Research-AI/issues"
+  },
+  "homepage": "https://github.com/khushaank/Research-AI#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
