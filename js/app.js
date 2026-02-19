@@ -2,6 +2,9 @@ const navList = document.getElementById("nav-list");
 const currentTitle = document.getElementById("current-title");
 const currentMeta = document.getElementById("current-meta");
 const viewerDisplay = document.getElementById("viewer-display");
+const searchInput = document.getElementById("search-input");
+
+let allResearch = [];
 
 async function loadResearch() {
   try {
@@ -9,19 +12,19 @@ async function loadResearch() {
     if (!response.ok) {
       throw new Error("Manifest not found");
     }
-    const data = await response.json();
+    allResearch = await response.json();
 
-    if (data.length === 0) {
+    if (allResearch.length === 0) {
       navList.innerHTML =
         '<div style="padding: 1rem; color: #94a3b8;">No research found.</div>';
       return;
     }
 
-    renderNav(data);
+    renderNav(allResearch);
 
     // Auto-select first item
-    if (data.length > 0) {
-      selectItem(data[0], 0);
+    if (allResearch.length > 0) {
+      selectItem(allResearch[0], 0);
     }
   } catch (error) {
     navList.innerHTML =
@@ -33,6 +36,12 @@ async function loadResearch() {
 function renderNav(items) {
   navList.innerHTML = "";
 
+  if (items.length === 0) {
+    navList.innerHTML =
+      '<div style="padding: 1rem; color: #94a3b8; font-size: 0.9rem;">No results found.</div>';
+    return;
+  }
+
   items.forEach((item, index) => {
     const navItem = document.createElement("div");
     navItem.className = "nav-item";
@@ -43,7 +52,7 @@ function renderNav(items) {
 
     // Shorten title if too long
     const displayTitle =
-      item.title.length > 28 ? item.title.substring(0, 28) + "..." : item.title;
+      item.title.length > 32 ? item.title.substring(0, 32) + "..." : item.title;
 
     navItem.innerHTML = `
       <ion-icon name="${iconName}"></ion-icon>
@@ -74,7 +83,6 @@ function selectItem(item, index) {
     const iframe = document.createElement("iframe");
     iframe.src = item.path;
     iframe.className = "viewer-iframe";
-    // Add permission policy if needed, but for local files/same-origin it's fine
     viewerDisplay.appendChild(iframe);
   } else {
     const img = document.createElement("img");
@@ -84,6 +92,17 @@ function selectItem(item, index) {
     viewerDisplay.appendChild(img);
   }
 }
+
+// Search Functionality
+searchInput.addEventListener("input", (e) => {
+  const query = e.target.value.toLowerCase();
+  const filtered = allResearch.filter(
+    (item) =>
+      item.title.toLowerCase().includes(query) ||
+      item.description.toLowerCase().includes(query),
+  );
+  renderNav(filtered);
+});
 
 // Start
 loadResearch();

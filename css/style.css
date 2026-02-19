@@ -50,24 +50,42 @@ aside {
 }
 
 .logo-icon {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
-  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-icon::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 60%
+  );
+  transform: rotate(45deg);
 }
 
 .brand-text {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
   color: var(--text-primary);
+  line-height: 1;
 }
 
 .brand-text span {
@@ -75,9 +93,43 @@ aside {
 }
 
 .sidebar-nav {
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   overflow-y: auto;
   flex: 1;
+}
+
+.search-container {
+  padding: 0 0.5rem 1.5rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  background: #f1f5f9;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.search-input:focus {
+  background: white;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-wrapper ion-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
 }
 
 .nav-header {
