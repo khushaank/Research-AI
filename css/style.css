@@ -250,11 +250,30 @@ main {
 }
 
 .image-preview {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+}
+
+.back-btn {
+  display: none; /* Hidden on desktop */
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewer-header-left {
+  display: flex;
+  align-items: center;
 }
 
 .empty-state {
@@ -288,19 +307,36 @@ main {
 }
 
 @media (max-width: 768px) {
-  body {
-    flex-direction: column;
+  body.mobile-view aside {
+    display: none;
+  }
+
+  body.mobile-view main {
+    display: flex;
   }
 
   aside {
     width: 100%;
-    height: auto;
-    max-height: 40vh;
     border-right: none;
-    border-bottom: 1px solid var(--border-color);
+    height: 100vh;
+    z-index: 20;
   }
 
   main {
-    height: 60vh;
+    display: none; /* Hidden by default on mobile until item selected */
+    width: 100%;
+    height: 100vh;
+    z-index: 30;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .back-btn {
+    display: flex;
+  }
+
+  .viewer-header {
+    padding: 0 1rem;
   }
 }

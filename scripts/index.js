@@ -23,7 +23,9 @@ function scanDirectory(dir) {
 
     if (stats.isFile() && ALLOWED_EXTENSIONS.includes(ext)) {
       // Relative path for web
-      const relativePath = path.posix.join("assets", "research", file);
+      // Ensure forward slashes and encode URI components for safety
+      const relativePathRaw = path.posix.join("assets", "research", file);
+      const relativePath = encodeURI(relativePathRaw);
 
       const name = path
         .parse(file)
